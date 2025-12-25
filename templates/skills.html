@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SkillPath – Skills</title>
+
+<style>
+body{
+  margin:0;
+  background:#eef2f7;
+  display:flex;
+  justify-content:center;
+  font-family:Segoe UI;
+}
+.app{
+  background:#f9fbfd;
+  width:460px;
+  margin-top:30px;
+  padding:28px 22px 90px;
+  border-radius:26px;
+  box-shadow:0 25px 50px rgba(0,0,0,0.08);
+  position:relative;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+.card{perspective:1000px;height:120px}
+.card-inner{
+  height:100%;
+  transition:0.6s;
+  transform-style:preserve-3d;
+  position:relative;
+}
+.card.flipped .card-inner{transform:rotateY(180deg)}
+.face{
+  position:absolute;inset:0;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  color:#fff;
+  font-weight:600;
+  backface-visibility:hidden;
+}
+.back{
+  background:#fff;
+  color:#333;
+  transform:rotateY(180deg);
+  padding:10px;
+}
+.levels label{
+  display:flex;
+  justify-content:space-between;
+  background:#f1f5f9;
+  padding:6px 10px;
+  border-radius:10px;
+  font-size:13px;
+  margin-bottom:6px;
+  cursor:pointer;
+}
+.levels label.selected{background:#e8edff}
+.tick{display:none;color:#5f5bff}
+.levels label.selected .tick{display:inline}
+
+/* COLORS */
+.c{background:#2979ff}
+.python{background:#00c853}
+.java{background:#ff6d00}
+.js{background:#f4b400;color:#000}
+.html{background:#ff1744}
+.css{background:#448aff}
+.uiux{background:#a142f4}
+.none{background:#6b7280}
+
+.next-btn{
+  position:absolute;
+  bottom:20px;
+  right:20px;
+  padding:12px 22px;
+  border-radius:999px;
+  border:none;
+  background:linear-gradient(135deg,#5f5bff,#9a35ff);
+  color:#fff;
+  font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+  <h2>Tell us your skills</h2>
+  <p style="color:#6b7280;font-size:14px">
+    Select what you already know. Beginners are welcome 🙂
+  </p>
+
+  <div class="grid" id="grid"></div>
+
+  <button class="next-btn" onclick="submitSkills()">Next →</button>
+</div>
+
+<form method="POST" id="skillForm" style="display:none">
+  <input type="hidden" name="skills" id="skillsInput">
+</form>
+
+<script>
+const skills = [
+  ["C","c"],["Python","python"],["Java","java"],
+  ["JavaScript","js"],["HTML","html"],["CSS","css"],
+  ["UI/UX Design","uiux"],["No Skills","none"]
+];
+
+const grid = document.getElementById("grid");
+let selected = {};
+
+skills.forEach(([name,cls])=>{
+  const card=document.createElement("div");
+  card.className="card";
+  card.innerHTML=`
+    <div class="card-inner">
+      <div class="face ${cls}">${name}</div>
+      <div class="face back">
+        ${
+          name==="No Skills"
+          ? "Don’t worry 😊 We’ll guide you from scratch."
+          : `<div class="levels">
+              <label onclick="pick(this,'${name}','Beginner')">
+                Beginner <span class="tick">✔</span>
+              </label>
+              <label onclick="pick(this,'${name}','Intermediate')">
+                Intermediate <span class="tick">✔</span>
+              </label>
+              <label onclick="pick(this,'${name}','Advanced')">
+                Advanced <span class="tick">✔</span>
+              </label>
+            </div>`
+        }
+      </div>
+    </div>
+  `;
+  card.onclick=()=>card.classList.toggle("flipped");
+  grid.appendChild(card);
+});
+
+function pick(el,skill,level){
+  el.parentElement.querySelectorAll("label").forEach(l=>l.classList.remove("selected"));
+  el.classList.add("selected");
+  selected[skill]=level;
+}
+
+function submitSkills(){
+  document.getElementById("skillsInput").value = JSON.stringify(selected);
+  document.getElementById("skillForm").submit();
+}
+</script>
+
+</body>
+</html>

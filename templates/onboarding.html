@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carvia Onboarding</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <style>
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg,#1e88e5,#42a5f5);
+    }
+
+    .onboard-card{
+      background:#ffffff;
+      width:100%;
+      max-width:520px;
+      padding:36px 30px;
+      border-radius:26px;
+      box-shadow:0 25px 50px rgba(0,0,0,0.18);
+      text-align:center;
+    }
+
+    .icon{
+      font-size:32px;
+      margin-bottom:10px;
+    }
+
+    h1{
+      color:#0f172a;
+      margin-bottom:12px;
+    }
+
+    .subtitle{
+      color:#334155;
+      font-size:15px;
+      margin-bottom:12px;
+    }
+
+    .desc{
+      color:#475569;
+      font-size:14px;
+      line-height:1.6;
+      margin-bottom:26px;
+    }
+
+    .continue-btn{
+      width:100%;
+      padding:14px;
+      border-radius:999px;
+      border:none;
+      font-size:16px;
+      font-weight:600;
+      color:#fff;
+      background:linear-gradient(135deg,#5f5bff,#9a35ff);
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="onboard-card">
+    <div class="icon">🚀</div>
+
+    <h1>Welcome to Carvia</h1>
+
+    <div class="subtitle">
+      Let’s personalize your career journey
+    </div>
+
+    <div class="desc">
+      We’ll ask you a few simple questions about your skills and interests
+      to build the best learning roadmap tailored just for you.
+    </div>
+
+    <!-- SINGLE CONTINUE BUTTON -->
+    <a href="/skills">
+      <button class="continue-btn">Continue</button>
+    </a>
+  </div>
+
+</body>
+</html>

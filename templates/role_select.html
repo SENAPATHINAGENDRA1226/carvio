@@ -1,0 +1,27 @@
+<form id="finalForm" method="POST" style="display:none;">
+  <input type="hidden" name="role" id="roleInput">
+  <input type="hidden" name="skills" id="skillsInput">
+  <input type="hidden" name="levels" id="levelsInput">
+</form>
+
+<script>
+let selectedRole = "";
+let selectedSkills = [];
+let selectedLevels = [];
+
+function saveSkill(skill, level){
+  selectedSkills.push(skill);
+  selectedLevels.push(level);
+}
+
+function saveRole(role){
+  selectedRole = role;
+}
+
+function submitAll(){
+  document.getElementById("roleInput").value = selectedRole;
+  document.getElementById("skillsInput").value = JSON.stringify(selectedSkills);
+  document.getElementById("levelsInput").value = JSON.stringify(selectedLevels);
+  document.getElementById("finalForm").submit();
+}
+</script>

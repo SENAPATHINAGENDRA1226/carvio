@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Carvia – Roadmap</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+.roadmap-card{
+  max-width:620px;
+  margin:40px auto;
+  background:#ffffff;
+  padding:32px;
+  border-radius:22px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.08);
+}
+.skills{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+.skill{
+  background:#eef2ff;
+  color:#4f46e5;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:14px;
+}
+.step{
+  margin-top:22px;
+  padding:18px;
+  background:#f9fafb;
+  border-radius:16px;
+}
+.step h3{
+  margin-bottom:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="roadmap-card">
+
+  <!-- 🔥 FIXED TITLE -->
+  <h1>Roadmap by Carvia</h1>
+  <p class="subtitle">
+    Personalized learning path for <b>{{ role }}</b>
+  </p>
+
+  <!-- 🔥 STEP 1 -->
+  <div class="step">
+    <h3>Step 1: Skills to Learn</h3>
+    <div class="skills">
+      {% for s in skills %}
+        <span class="skill">{{ s }}</span>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="step">
+    <h3>Step 2: Practice & Projects</h3>
+    <p>
+      Build real-world projects using these skills to strengthen your understanding.
+    </p>
+  </div>
+
+  <div class="step">
+    <h3>Step 3: Career Readiness</h3>
+    <p>
+      Learn frameworks, tools, and apply for internships or entry-level roles.
+    </p>
+  </div>
+
+  <br>
+  <a href="/dashboard">Go to Dashboard</a>
+
+<a href="/download-roadmap" class="download-btn">
+  Download Roadmap (PDF)
+</a>
+
+
+</div>
+
+</body>
+</html>

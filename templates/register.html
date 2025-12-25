@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carvia Register</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f3f4fb;
+    }
+
+    .card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 380px;
+      padding: 30px 25px;
+      border-radius: 22px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 10px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #5f5bff, #9a35ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    h1 {
+      margin: 10px 0 5px;
+      color: #6a3df0;
+      font-size: 26px;
+    }
+
+    .subtitle {
+      color: #6b7280;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 16px;
+      border-radius: 14px;
+      border: none;
+      background: #f1f5f9;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      background: #ffffff;
+      box-shadow: 0 0 0 2px rgba(106, 61, 240, 0.25);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 16px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(135deg, #5f5bff, #9a35ff);
+      cursor: pointer;
+      margin-top: 6px;
+    }
+
+    .links {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    .links a {
+      color: #6a3df0;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .flash {
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #dc2626;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <div class="logo">📚</div>
+
+    <h1>Create Account</h1>
+    <div class="subtitle">Start your Carvia journey</div>
+
+    <!-- FLASH MESSAGES -->
+    {% for m in get_flashed_messages() %}
+      <div class="flash">{{ m }}</div>
+    {% endfor %}
+
+    <form method="POST">
+      <input name="name" placeholder="Full Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <input type="password" name="confirm" placeholder="Confirm Password" required />
+
+      <button type="submit">Register</button>
+    </form>
+
+    <div class="links">
+      Already have an account?
+      <a href="/">Login</a>
+    </div>
+  </div>
+
+</body>
+</html>
